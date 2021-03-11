@@ -28,7 +28,7 @@ def plot_fit_and_forecast_int(df, train, test, N_test, result, d, col='Passenger
     ax.plot(df[col], label='data')
 
     # Plot the curve fitted on the train set
-    train_pred = result.predict(start=train.index[d], end=train.index[-1], type='levels')
+    train_pred = result.predict(start=train.index[d], end=train.index[-1], typ='levels')
     ax.plot(train.index[d:], train_pred, color='green', label='fitted')
 
     # Forecast the test set
@@ -157,9 +157,9 @@ def arima1():
     arima_result_log1210 = arima.fit()
     plot_fit_and_forecast_int(df, train, test, N_test, arima_result_log1210, 1, col='LogPassengers')
 
-    print(f"RMSE ARIMA(8,1,1): {rmse(arima_result_811, False)}")
-    print(f"RMSE ARIMA(8,1,1) logged: {rmse(arima_result_log811, False)}")
-    print(f"RMSE ARIMA(12,1,0) logged: {rmse(arima_result_log1210, False)}")
+    print(f"RMSE ARIMA(8,1,1): {rmse(test, N_test, arima_result_811, False)}")
+    print(f"RMSE ARIMA(8,1,1) logged: {rmse(test, N_test, arima_result_log811, True)}")
+    print(f"RMSE ARIMA(12,1,0) logged: {rmse(test, N_test, arima_result_log1210, True)}")
 
 
 def arima2():
